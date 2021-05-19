@@ -1,0 +1,22 @@
+---
+- name: install xclip (browser gopass bridge copy paste)
+  become: yes
+  package:
+    name: "xclip"
+    state: present
+
+- name: download gopass-jsonapi from github
+  get_url:
+    url: "{{ gopass_jsonapi_url }}"
+    dest: "/tmp/{{ gopass_jsonapi_deb_name }}"
+    mode: '0440'
+
+- name: install gopass-jsonapi package
+  become: yes
+  apt:
+    deb: "/tmp/{{ gopass_jsonapi_deb_name }}"
+  
+- name: configure gopass bridge
+  become: yes
+  become_user: "{{ gopass_jsonapi_user }}"
+  command: "gopass-jsonapi configure --browser {{ gopass_jsonapi_browser }} --path {{ gopass_jsonapi_path }} --manifest-path {{ gopass_jsonapi_manifest_path }} --global {{ gopass_jsonapi_global | ternary('true', 'false') }} --print false"

@@ -1,0 +1,10 @@
+---
+gopass_jsonapi_version: 1.11.1
+gopass_jsonapi_tag: "v{{ gopass_jsonapi_version }}"
+gopass_jsonapi_deb_name: "gopass-jsonapi_{{ gopass_jsonapi_version }}_linux_amd64.deb"
+gopass_jsonapi_url: "https://github.com/gopasspw/gopass-jsonapi/releases/download/{{ gopass_jsonapi_tag }}/{{ gopass_jsonapi_deb_name }}"
+gopass_jsonapi_browser: chrome
+gopass_jsonapi_user: "{{ lookup('env', 'USER') }}"
+gopass_jsonapi_path: "/home/{{ gopass_jsonapi_user }}/.config/gopass"
+gopass_jsonapi_manifest_path: "/home/{{ gopass_jsonapi_user }}/.config/google-chrome/NativeMessagingHosts/com.justwatch.gopass.json"
+gopass_jsonapi_global: false
